@@ -1,322 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOKUL CHHABRA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .stock-bg {
-            background: linear-gradient(135deg, #0a0f1e 0%, #1a1f3a 50%, #0d1426 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stock-bg::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(6, 182, 212, 0.03) 2px, rgba(6, 182, 212, 0.03) 4px),
-                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(6, 182, 212, 0.03) 2px, rgba(6, 182, 212, 0.03) 4px);
-            animation: gridMove 40s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .chart-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.08;
-            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='chart' x='0' y='0' width='200' height='150' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0,100 L50,60 L100,80 L150,30 L200,50' stroke='%2306b6d4' stroke-width='2' fill='none'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23chart)'/%3E%3C/svg%3E");
-            pointer-events: none;
-        }
-
-        .glow-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%);
-            top: 10%;
-            left: 15%;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, transparent 70%);
-            bottom: 15%;
-            right: 20%;
-            animation-delay: 2s;
-        }
-
-        .orb-3 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-
-        .ticker-tape {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(6, 182, 212, 0.1);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(6, 182, 212, 0.2);
-            padding: 12px 0;
-            overflow: hidden;
-        }
-
-        .ticker-content {
-            display: flex;
-            animation: tickerScroll 30s linear infinite;
-            white-space: nowrap;
-        }
-
-        @keyframes tickerScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .ticker-item {
-            padding: 0 40px;
-            font-size: 14px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .ticker-item.up {
-            color: #10b981;
-        }
-
-        .ticker-item.down {
-            color: #ef4444;
-        }
-
-        .card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 24px;
-            box-shadow: 
-                0 0 60px rgba(6, 182, 212, 0.15),
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            animation: cardEntry 0.8s ease-out;
-        }
-
-        @keyframes cardEntry {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .profile-section {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(34, 211, 238, 0.1) 100%);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            border-radius: 16px;
-            padding: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.6), transparent);
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            animation: badgePulse 2s ease-in-out infinite;
-        }
-
-        .badge-premium {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: #78350f;
-            box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
-        }
-
-        .badge-live {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            color: white;
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
-            padding: 18px 32px;
-            border-radius: 16px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 
-                0 0 30px rgba(6, 182, 212, 0.4),
-                0 10px 25px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 0 40px rgba(6, 182, 212, 0.6),
-                0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(14, 165, 233, 0.05) 100%);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 16px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .feature-card:hover {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(14, 165, 233, 0.1) 100%);
-            border-color: rgba(6, 182, 212, 0.4);
-            transform: translateX(8px);
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
-        }
-
-        .icon-wrapper {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
-        }
-
-        .title-gradient {
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            font-size: 30px;
-            background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 50%, #06b6d4 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 3s ease infinite;
-            letter-spacing: -0.02em;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .disclaimer {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.4);
-            text-align: center;
-        }
-
-        .disclaimer a {
-            color: rgba(6, 182, 212, 0.6);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .disclaimer a:hover {
-            color: rgba(6, 182, 212, 0.9);
-        }
-
-        @media (max-width: 640px) {
-            .title-gradient {
-                font-size: 40px;
-            }
-            
-            .cta-button {
-                font-size: 16px;
-                padding: 16px 28px;
-            }
-        }
-    </style>
-  <!-- Meta Pixel Code -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gokul Chhabra | Stock Market Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#0a0f1e;--bg2:#1a1f3a;--card:#0f1a2e;--line:#1f4a63;--text:#f4f8fb;--muted:#b9d3e0;--accent:#06b6d4;--accent2:#0891b2;--btn-text:#03222c;--warn:#f5c26b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit','Segoe UI',Arial,sans-serif;color:var(--text);background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,#0d1426);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:12px}
+.card{width:100%;max-width:560px;background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(30,41,59,.96));border:1px solid rgba(6,182,212,.25);border-radius:24px;padding:28px 24px;box-shadow:0 0 60px rgba(6,182,212,.12),0 20px 40px rgba(0,0,0,.4)}
+h1{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:2rem;color:var(--accent);text-align:center;letter-spacing:-.02em}
+.tag{text-align:center;color:var(--muted);margin:4px 0 18px}
+.profile{display:flex;align-items:center;gap:16px;background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);border-radius:16px;padding:18px}
+.avatar{width:72px;height:72px;border-radius:50%;flex:none;background:linear-gradient(135deg,#22d3ee,#2563eb);display:grid;place-items:center;font-weight:700;font-size:1.5rem;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.profile strong{display:block;font-size:1.05rem}
+.reg{color:var(--muted);font-size:.9rem;margin-top:2px}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 0 20px;padding:17px 24px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--btn-text);font-weight:700;font-size:1.1rem;text-decoration:none;box-shadow:0 0 28px rgba(6,182,212,.35);transition:transform .2s}
+.cta:hover{transform:translateY(-2px)}
+.cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.cta svg{width:24px;height:24px;fill:currentColor}
+.feat{display:flex;gap:14px;align-items:flex-start;background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.2);border-radius:16px;padding:16px;margin-bottom:10px}
+.ico{width:44px;height:44px;flex:none;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:1.3rem}
+.feat h2{font-size:1.05rem;font-weight:600;margin-bottom:2px}
+.feat p{color:var(--muted);font-size:.92rem}
+.risk{margin-top:18px;border:1px solid var(--warn);background:rgba(245,194,107,.08);border-radius:14px;padding:14px 16px}
+.risk h3{color:var(--warn);font-size:.95rem;margin-bottom:6px}
+.risk p{font-size:.88rem;line-height:1.55}
+.foot{margin-top:14px;color:var(--muted);font-size:.8rem;text-align:center;line-height:1.6}
+.foot a{color:#67d4e8}
+@media (prefers-reduced-motion:reduce){.cta{transition:none}}
+.legal{display:none;width:100%;max-width:640px;background:var(--card);border:1px solid rgba(6,182,212,.25);border-radius:20px;padding:26px 22px;line-height:1.65}
+.legal:target{display:block}
+body:has(.legal:target) main{display:none}
+.legal h2{font-family:'Playfair Display',Georgia,serif;color:var(--accent);font-size:1.6rem;margin-bottom:4px}
+.legal h3{font-size:1rem;margin:16px 0 4px}
+.legal p,.legal li{color:var(--muted);font-size:.93rem}
+.legal ul{padding-left:20px}
+.legal .back{display:inline-block;margin-top:20px;color:#67d4e8;font-weight:600}
+</style>
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -329,100 +57,79 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '39394933113483735');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=39394933113483735&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->	
- </head>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=39394933113483735&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
 <body>
-    <div class="stock-bg min-h-screen flex items-center justify-center p-2 relative">
-        <!-- Animated orbs -->
-        <div class="glow-orb orb-1"></div>
-        <div class="glow-orb orb-2"></div>
-        <div class="glow-orb orb-3"></div>
-        
-        <!-- Chart overlay -->
-        <div class="chart-overlay"></div>
+<main class="card">
+  <h1>GOKUL CHHABRA</h1>
+  <p class="tag">Stock market education and commentary</p>
 
-        <!-- Main card -->
-        <div class="card max-w-xl w-full p-8 relative z-10">
-            <!-- Header -->
-            <div class="text-center mb-2">
-                <h1 class="title-gradient mb-2">GOKUL CHHABRA</h1>
-            </div>
-
-            <!-- Profile section -->
-            <div class="profile-section mb-2">
-                <div class="flex items-center gap-4">
-                    <div class="relative">
-                        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white font-bold text-2xl shadow-lg">
-                            <img src="profile.jpg" class="rounded-full" alt="">
-                        </div>
-                        <div class="absolute -bottom-1 -right-1 w-7 h-7 bg-green-500 rounded-full border-4 border-slate-800"></div>
-                    </div>
-                    
-                    <div class="flex-1">
-                        <div class="flex flex-wrap gap-2 mb-2">
-                            <span class="badge badge-premium">
-                                ⭐ Premium Analyst
-                            </span>
-                            <span class="badge badge-live">
-                                🔴 Live Updates
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-2 text-cyan-200">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-                            </svg>
-                            <span class="font-semibold">100k+ Members</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA Button -->
-            <a href="https://telegram.me/+hu8DghmER0kxNzU1" target="_blank" class="block mb-6">
-                <button class="cta-button w-full flex items-center justify-center gap-3">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.231.169.324.016.093.036.305.02.469z"/>
-                    </svg>
-                    JOIN TELEGRAM NOW
-                </button>
-            </a>
-
-            <!-- Features -->
-            <div class="space-y-3 mb-6">
-                <div class="feature-card flex items-start gap-4">
-                    <div class="icon-wrapper">📊</div>
-                    <div class="flex-1">
-                        <h3 class="text-white font-semibold text-lg mb-1">Expert Analysis</h3>
-                        <p class="text-cyan-200 text-sm">Professional stock market insights & strategies</p>
-                    </div>
-                </div>
-
-                <div class="feature-card flex items-start gap-4">
-                    <div class="icon-wrapper">⚡</div>
-                    <div class="flex-1">
-                        <h3 class="text-white font-semibold text-lg mb-1">Live Market Updates</h3>
-                        <p class="text-cyan-200 text-sm">Real-time coverage & trading signals</p>
-                    </div>
-                </div>
-
-                <div class="feature-card flex items-start gap-4">
-                    <div class="icon-wrapper">👥</div>
-                    <div class="flex-1">
-                        <h3 class="text-white font-semibold text-lg mb-1">Active Community</h3>
-                        <p class="text-cyan-200 text-sm">Connect with traders & investors</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Disclaimer -->
-            <div class="disclaimer">
-                For entertainment purposes only.<br>
-            </div>
-        </div>
-        </div>
+  <section class="profile">
+    <div class="avatar"><img src="profile.jpg" alt="Gokul Chhabra" onerror="this.replaceWith('GC')"></div>
+    <div>
+      <strong>Gokul Chhabra</strong>
+      <p class="reg">SEBI Registered Research Analyst<br>Reg. No.: [INH000000000]</p>
     </div>
+  </section>
+
+  <a class="cta" href="https://telegram.me/+hu8DghmER0kxNzU1" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.231.169.324.016.093.036.305.02.469z"/></svg>
+    Join our Telegram channel
+  </a>
+
+  <section class="feat"><div class="ico" aria-hidden="true">📊</div><div><h2>Market commentary</h2><p>Views on market trends, sectors and quarterly results</p></div></section>
+  <section class="feat"><div class="ico" aria-hidden="true">📘</div><div><h2>Educational content</h2><p>Learn how markets, charts and risk management work</p></div></section>
+  <section class="feat"><div class="ico" aria-hidden="true">👥</div><div><h2>Community discussion</h2><p>Ask questions and learn with other market participants</p></div></section>
+
+  <section class="risk" role="note">
+    <h3>Risk disclosure</h3>
+    <p>Investments in securities markets are subject to market risks. Read all related documents carefully before investing. Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors. Past performance is not indicative of future results. No profits or returns are guaranteed.</p>
+  </section>
+
+  <p class="foot">Content is for information and education only and is not a guarantee of returns.<br>
+  Grievances: [your email] | SEBI SCORES: <a href="https://scores.sebi.gov.in" target="_blank" rel="noopener">scores.sebi.gov.in</a><br>
+  <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms</a></p>
+</main>
+
+<section class="legal" id="privacy">
+  <h2>Privacy Policy</h2>
+  <p>Last updated: [DD Month YYYY]</p>
+  <h3>Who we are</h3>
+  <p>This website is operated by Gokul Chhabra ([business or trade name, address]). Contact: [your email].</p>
+  <h3>What we collect</h3>
+  <ul>
+    <li>Technical data such as IP address, browser type, device and pages visited.</li>
+    <li>Usage data collected through the Meta Pixel and cookies, such as whether you viewed this page or clicked the Telegram button.</li>
+    <li>We do not collect your name, phone number, bank or demat details on this website. Anything you share on Telegram is governed by Telegram's own policy.</li>
+  </ul>
+  <h3>How we use it</h3>
+  <p>To understand how many people visit this page, to measure and improve our advertising on Meta platforms, and to keep the site secure.</p>
+  <h3>Sharing</h3>
+  <p>Data is shared with Meta Platforms, Inc. through the Pixel, and with Telegram when you follow the link to our channel. We do not sell personal data.</p>
+  <h3>Cookies and your choices</h3>
+  <p>You can block cookies in your browser and manage ad preferences in your Meta account settings.</p>
+  <h3>Your rights and grievances</h3>
+  <p>You may ask us to access or delete data we hold about you by writing to [your email]. We will respond within [30] days.</p>
+  <a class="back" href="#">Back to page</a>
+</section>
+
+<section class="legal" id="terms">
+  <h2>Terms of Use</h2>
+  <p>Last updated: [DD Month YYYY]</p>
+  <h3>Educational purpose</h3>
+  <p>Content shared through this website and our Telegram channel is for information and education. It is general commentary and does not take your personal financial situation, goals or risk appetite into account.</p>
+  <h3>No guarantee of returns</h3>
+  <p>Investments in securities markets are subject to market risks. Read all related documents carefully before investing. We do not guarantee profits or returns, and past performance is not indicative of future results. You are solely responsible for your investment decisions.</p>
+  <h3>Registration</h3>
+  <p>SEBI Registered Research Analyst, Reg. No. [INH000000000]. Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors.</p>
+  <h3>Third-party services</h3>
+  <p>The Telegram channel is run on Telegram's platform and is subject to Telegram's terms. We never ask for your passwords, OTPs or payments through this website or channel messages, and we do not manage funds on your behalf.</p>
+  <h3>Intellectual property</h3>
+  <p>All content on this website is owned by us. Do not copy or redistribute it without written permission.</p>
+  <h3>Contact and grievances</h3>
+  <p>[your email]. You may also file a complaint at <a href="https://scores.sebi.gov.in" target="_blank" rel="noopener" style="color:#67d4e8">scores.sebi.gov.in</a>.</p>
+  <a class="back" href="#">Back to page</a>
+</section>
 </body>
 </html>
