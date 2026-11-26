@@ -1,50 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Gokul Chhabra | Stock Market Education</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg1:#0a0f1e;--bg2:#1a1f3a;--card:#0f1a2e;--line:#1f4a63;--text:#f4f8fb;--muted:#b9d3e0;--accent:#06b6d4;--accent2:#0891b2;--btn-text:#03222c;--warn:#f5c26b;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Outfit','Segoe UI',Arial,sans-serif;color:var(--text);background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,#0d1426);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:12px}
-.card{width:100%;max-width:560px;background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(30,41,59,.96));border:1px solid rgba(6,182,212,.25);border-radius:24px;padding:28px 24px;box-shadow:0 0 60px rgba(6,182,212,.12),0 20px 40px rgba(0,0,0,.4)}
-h1{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:2rem;color:var(--accent);text-align:center;letter-spacing:-.02em}
-.tag{text-align:center;color:var(--muted);margin:4px 0 18px}
-.profile{display:flex;align-items:center;gap:16px;background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);border-radius:16px;padding:18px}
-.avatar{width:72px;height:72px;border-radius:50%;flex:none;background:linear-gradient(135deg,#22d3ee,#2563eb);display:grid;place-items:center;font-weight:700;font-size:1.5rem;overflow:hidden}
-.avatar img{width:100%;height:100%;object-fit:cover}
-.profile strong{display:block;font-size:1.05rem}
-.reg{color:var(--muted);font-size:.9rem;margin-top:2px}
-.cta{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 0 20px;padding:17px 24px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--btn-text);font-weight:700;font-size:1.1rem;text-decoration:none;box-shadow:0 0 28px rgba(6,182,212,.35);transition:transform .2s}
-.cta:hover{transform:translateY(-2px)}
-.cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.cta svg{width:24px;height:24px;fill:currentColor}
-.feat{display:flex;gap:14px;align-items:flex-start;background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.2);border-radius:16px;padding:16px;margin-bottom:10px}
-.ico{width:44px;height:44px;flex:none;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:1.3rem}
-.feat h2{font-size:1.05rem;font-weight:600;margin-bottom:2px}
-.feat p{color:var(--muted);font-size:.92rem}
-.risk{margin-top:18px;border:1px solid var(--warn);background:rgba(245,194,107,.08);border-radius:14px;padding:14px 16px}
-.risk h3{color:var(--warn);font-size:.95rem;margin-bottom:6px}
-.risk p{font-size:.88rem;line-height:1.55}
-.foot{margin-top:14px;color:var(--muted);font-size:.8rem;text-align:center;line-height:1.6}
-.foot a{color:#67d4e8}
-@media (prefers-reduced-motion:reduce){.cta{transition:none}}
-.legal{display:none;width:100%;max-width:640px;background:var(--card);border:1px solid rgba(6,182,212,.25);border-radius:20px;padding:26px 22px;line-height:1.65}
-.legal:target{display:block}
-body:has(.legal:target) main{display:none}
-.legal h2{font-family:'Playfair Display',Georgia,serif;color:var(--accent);font-size:1.6rem;margin-bottom:4px}
-.legal h3{font-size:1rem;margin:16px 0 4px}
-.legal p,.legal li{color:var(--muted);font-size:.93rem}
-.legal ul{padding-left:20px}
-.legal .back{display:inline-block;margin-top:20px;color:#67d4e8;font-weight:600}
-</style>
-<!-- Meta Pixel Code -->
+<!-- HEAD: replace your Meta Pixel block -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -55,83 +9,43 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '3283572388458218');
-fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=3283572388458218&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-</head>
-<body>
-<main class="card">
-  <h1>GOKUL CHHABRA</h1>
-  <p class="tag">Stock market education and commentary</p>
+<script>
+(function () {
+  var MIN_MS = 2500;
+  var ua = navigator.userAgent || '';
+  var isBot = navigator.webdriver ||
+    /bot|crawl|spider|headless|facebookexternalhit|facebot|preview|lighthouse|python|curl|wget|phantom|selenium/i.test(ua) ||
+    (navigator.plugins && navigator.plugins.length === 0 && /Chrome/.test(ua) && !/Mobile|Android/.test(ua) && !navigator.languages);
+  window.__humanOK = false;
+  if (isBot) return;
+  var timeOk = false, touched = false, sent = false;
+  var evts = ['touchstart','pointerdown','mousemove','scroll','wheel','keydown'];
+  function maybeFire() {
+    if (sent || !timeOk || !touched || document.hidden) return;
+    sent = true; window.__humanOK = true;
+    try { fbq('track','PageView'); } catch (e) {}
+    evts.forEach(function (n) { window.removeEventListener(n, onHuman, true); });
+  }
+  function onHuman() { touched = true; maybeFire(); }
+  evts.forEach(function (n) { window.addEventListener(n, onHuman, { capture: true, passive: true }); });
+  document.addEventListener('visibilitychange', maybeFire);
+  setTimeout(function () { timeOk = true; maybeFire(); }, MIN_MS);
+})();
+</script>
 
-  <section class="profile">
-    <div class="avatar"><img src="profile.jpg" alt="Gokul Chhabra" onerror="this.replaceWith('GC')"></div>
-    <div>
-      <strong>Gokul Chhabra</strong>
-      <p class="reg">SEBI Registered Research Analyst<br>Reg. No.: [INH000014827]</p>
-    </div>
-  </section>
+<!-- BODY: add id="tgBtn" to your button -->
+<a class="cta" id="tgBtn" href="https://telegram.me/+sRQ2pNS4ggA2OTM1" target="_blank" rel="noopener">
 
-  <a class="cta" href="https://telegram.me/+sRQ2pNS4ggA2OTM1" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.231.169.324.016.093.036.305.02.469z"/></svg>
-    Join our Telegram channel
-  </a>
-
-  <section class="feat"><div class="ico" aria-hidden="true">📊</div><div><h2>Market commentary</h2><p>Views on market trends, sectors and quarterly results</p></div></section>
-  <section class="feat"><div class="ico" aria-hidden="true">📘</div><div><h2>Educational content</h2><p>Learn how markets, charts and risk management work</p></div></section>
-  <section class="feat"><div class="ico" aria-hidden="true">👥</div><div><h2>Community discussion</h2><p>Ask questions and learn with other market participants</p></div></section>
-
-  <section class="risk" role="note">
-    <h3>Risk disclosure</h3>
-    <p>Investments in securities markets are subject to market risks. Read all related documents carefully before investing. Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors. Past performance is not indicative of future results. No profits or returns are guaranteed.</p>
-  </section>
-
-  <p class="foot">Content is for information and education only and is not a guarantee of returns.<br>
-  Grievances: [your email] | SEBI SCORES: <a href="https://scores.sebi.gov.in" target="_blank" rel="noopener">scores.sebi.gov.in</a><br>
-  <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms</a></p>
-</main>
-
-<section class="legal" id="privacy">
-  <h2>Privacy Policy</h2>
-  <p>Last updated: [DD Month YYYY]</p>
-  <h3>Who we are</h3>
-  <p>This website is operated by Gokul Chhabra ([business or trade name, address]). Contact: [your email].</p>
-  <h3>What we collect</h3>
-  <ul>
-    <li>Technical data such as IP address, browser type, device and pages visited.</li>
-    <li>Usage data collected through the Meta Pixel and cookies, such as whether you viewed this page or clicked the Telegram button.</li>
-    <li>We do not collect your name, phone number, bank or demat details on this website. Anything you share on Telegram is governed by Telegram's own policy.</li>
-  </ul>
-  <h3>How we use it</h3>
-  <p>To understand how many people visit this page, to measure and improve our advertising on Meta platforms, and to keep the site secure.</p>
-  <h3>Sharing</h3>
-  <p>Data is shared with Meta Platforms, Inc. through the Pixel, and with Telegram when you follow the link to our channel. We do not sell personal data.</p>
-  <h3>Cookies and your choices</h3>
-  <p>You can block cookies in your browser and manage ad preferences in your Meta account settings.</p>
-  <h3>Your rights and grievances</h3>
-  <p>You may ask us to access or delete data we hold about you by writing to [your email]. We will respond within [30] days.</p>
-  <a class="back" href="#">Back to page</a>
-</section>
-
-<section class="legal" id="terms">
-  <h2>Terms of Use</h2>
-  <p>Last updated: [DD Month YYYY]</p>
-  <h3>Educational purpose</h3>
-  <p>Content shared through this website and our Telegram channel is for information and education. It is general commentary and does not take your personal financial situation, goals or risk appetite into account.</p>
-  <h3>No guarantee of returns</h3>
-  <p>Investments in securities markets are subject to market risks. Read all related documents carefully before investing. We do not guarantee profits or returns, and past performance is not indicative of future results. You are solely responsible for your investment decisions.</p>
-  <h3>Registration</h3>
-  <p>SEBI Registered Research Analyst, Reg. No. [INH000000000]. Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors.</p>
-  <h3>Third-party services</h3>
-  <p>The Telegram channel is run on Telegram's platform and is subject to Telegram's terms. We never ask for your passwords, OTPs or payments through this website or channel messages, and we do not manage funds on your behalf.</p>
-  <h3>Intellectual property</h3>
-  <p>All content on this website is owned by us. Do not copy or redistribute it without written permission.</p>
-  <h3>Contact and grievances</h3>
-  <p>[your email]. You may also file a complaint at <a href="https://scores.sebi.gov.in" target="_blank" rel="noopener" style="color:#67d4e8">scores.sebi.gov.in</a>.</p>
-  <a class="back" href="#">Back to page</a>
-</section>
-</body>
-</html>
+<!-- Just before </body> -->
+<script>
+(function () {
+  var btn = document.getElementById('tgBtn'), done = false;
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    if (done || !window.__humanOK) return;
+    done = true;
+    try { fbq('track','Lead',{content_name:'Telegram channel join click'}); } catch (e) {}
+  });
+})();
+</script>
